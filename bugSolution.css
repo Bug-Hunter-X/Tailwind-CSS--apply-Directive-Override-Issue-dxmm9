@@ -1,0 +1,20 @@
+To fix this, avoid using `@apply` with custom classes that have properties conflicting with Tailwind utilities.  Instead, use Tailwind's utility classes directly, or if you must use custom classes, ensure their specificity is higher than that of the conflicting Tailwind classes.
+
+For instance, you could make your custom class more specific by adding a parent selector:
+
+```css
+/* bugSolution.css */
+.my-component {
+  background-color: #ff0000; /*Directly define the style*/
+  @apply bg-blue-500; /* Now Tailwind styles will work as expected */
+}
+```
+Alternatively, using only Tailwind classes results in a cleaner solution:
+
+```css
+/* bugSolution.css */
+.my-component {
+  @apply bg-red-500 bg-blue-500; /*Tailwind classes only */
+}
+```
+This ensures that there's no conflict and your styles will be applied predictably.
