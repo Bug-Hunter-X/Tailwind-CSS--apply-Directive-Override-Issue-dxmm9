@@ -1,0 +1,15 @@
+This bug occurs when using Tailwind CSS's `@apply` directive with custom CSS classes that contain properties that are also defined in Tailwind's default configuration.  The `@apply` directive will override the custom styles in favor of Tailwind's defaults, even if the custom styles are more specific. For example:
+
+```css
+/* custom.css */
+.my-custom-class {
+  background-color: #ff0000;
+}
+
+/* main.css */
+.my-component {
+  @apply my-custom-class;
+  @apply bg-blue-500; /* Tailwind's bg-blue-500 overrides custom bg-color */
+}
+```
+In this case, `bg-blue-500` will override the `background-color: #ff0000` from `my-custom-class`, despite `my-custom-class` being applied first. This can lead to unexpected styling issues.
